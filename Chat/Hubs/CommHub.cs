@@ -35,8 +35,9 @@ namespace Chat.Hubs
         }
 
         public async Task SendMessageAsync(string userName, string message)
-        {
-            await Clients.Others.SendMessageAsync(userName, message);
+        {   
+            //change All to Others
+            await Clients.All.SendMessageAsync(userName, message);
         }
     }
 }
