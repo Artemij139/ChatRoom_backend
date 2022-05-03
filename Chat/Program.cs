@@ -30,6 +30,10 @@ var app = builder.Build();
 
 app.UseRouting();
 
+//app.UseAuthentication();
+
+//app.UseAuthorization();
+
 app.UseCors();
 
 app.MapHub<CommHub>("/chat");
