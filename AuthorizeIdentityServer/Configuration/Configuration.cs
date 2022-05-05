@@ -15,7 +15,7 @@ namespace AuthorizeIdentityServer.Configuration
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
                     AllowedScopes =
                     {
-                        "ChatSpa"
+                        "ChatBack"
                     }
                 }
             };
@@ -34,7 +34,7 @@ namespace AuthorizeIdentityServer.Configuration
         internal static IEnumerable<ApiResource> GetApiResources() =>
         new List<ApiResource>
         {
-            new ApiResource("ChatSpa")
+            new ApiResource("ChatBack")
         };
 
     }
