@@ -12,7 +12,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, config =>
     {
         config.Authority = "https://localhost:10001";
-        config.Audience = "chatSpa";
+        config.Audience = "ChatServer";
     });
 
 
