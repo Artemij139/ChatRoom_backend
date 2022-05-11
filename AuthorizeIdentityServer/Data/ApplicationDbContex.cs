@@ -1,11 +1,14 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using AuthorizeIdentityServer.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace AuthorizeIdentityServer.Data
 {
-    public class ApplicationDbContex: IdentityDbContext<>
+    public class ApplicationDbContext : IdentityDbContext<AppUser, AppRole, Guid>
     {
-        public ApplicationDbContex(D)
+        public ApplicationDbContext(DbContextOptions <ApplicationDbContext> options) : base(options)
         {
+
         }
     }
 }
