@@ -1,6 +1,7 @@
 using AuthorizeIdentityServer.Configuration;
 using AuthorizeIdentityServer.Data;
 using AuthorizeIdentityServer.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,7 +10,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<ApplicationDbContext>(config =>
 {
-    config.UseSqlServer();
+    config.UseSqlServer(builder.Configuration.GetConnectionString("default"));
 })
     .AddIdentity<AppUser, AppRole>(config =>
     {
@@ -27,6 +28,7 @@ builder.Services.AddIdentityServer(
     {
         options.UserInteraction.LoginUrl = "/Auth/Login";
     })
+    .AddAspNetIdentity<AppUser>()
     .AddInMemoryClients(Configuration.GetClients() )
     .AddInMemoryApiResources(Configuration.GetApiResources())
     .AddInMemoryIdentityResources(Configuration.GetIdentityResources())
