@@ -1,11 +1,16 @@
 ﻿using Chat.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
+
 
 namespace Chat.Hubs
 {
-    public class CommHub : Hub<IcommunicationHub>
-    {
-        public CommHub(Manager manager)
+
+    [Authorize]
+    public class chatHub : Hub<IcommunicationHub>
+    {   
+       
+        public chatHub(Manager manager)
         {
             _manager = manager;
         }
@@ -34,8 +39,11 @@ namespace Chat.Hubs
             return Task.CompletedTask;
         }
 
+
+        
         public async Task SendMessageAsync(string userName, string message)
-        {   
+        {
+            var x = Context.User;
             //change All to Others
             await Clients.All.SendMessageAsync(userName, message);
         }

@@ -16,10 +16,10 @@ namespace AuthorizeIdentityServer.Configuration
                     RequirePkce = true,
                     AllowedGrantTypes = GrantTypes.Code,
                     AllowedCorsOrigins = {"http://localhost:3000"},
-                    RedirectUris ={ "http://localhost:3000/callback.html" },
+                    RedirectUris ={ "http://localhost:3000/callback" },
                     AllowedScopes =
                     {
-                        "ChatServer",
+                        "chatHub",
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile
                     }
@@ -41,14 +41,14 @@ namespace AuthorizeIdentityServer.Configuration
         internal static IEnumerable<ApiResource> GetApiResources() =>
         new List<ApiResource>
         {
-            new ApiResource("ChatServer")
+            new ApiResource("chatHub")
         };
 
         internal static IEnumerable<ApiScope> GetApiScopes()=>
         
         new List<ApiScope>
         {
-            new ApiScope("ChatServer")
+            new ApiScope("chatHub","chatHub")
         };
 
     }
