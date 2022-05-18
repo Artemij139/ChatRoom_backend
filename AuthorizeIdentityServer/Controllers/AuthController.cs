@@ -59,5 +59,11 @@ namespace AuthorizeIdentityServer.Controllers
 
             return View(model);
         }
+
+        [Route("[action]")]
+        public IActionResult Registration(string returnUrl)
+        {
+            return View();
+        }
     }
 }

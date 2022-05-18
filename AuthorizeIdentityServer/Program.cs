@@ -37,7 +37,7 @@ builder.Services.AddIdentityServer(
 
 var app = builder.Build();
 
-
+app.UseStaticFiles();
 app.UseIdentityServer();
 app.MapDefaultControllerRoute();
 
