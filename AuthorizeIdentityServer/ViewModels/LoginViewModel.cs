@@ -3,15 +3,19 @@
 namespace AuthorizeIdentityServer.ViewModels
 {
     public class LoginViewModel
+
     {
-        [Required]
+        
+        [Required(ErrorMessage = "Введите имя пользователя!")]
         public string UserName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Введите пароль!")]
+        [MinLength(6,ErrorMessage = "Пароль должен содержать не менее 6 символов!")]
         public string Password { get; set; }
 
         [Required]
         public string ReturnUrl { get; set; }
+        public string CustomError { get; set; } = string.Empty;
 
     }
 }

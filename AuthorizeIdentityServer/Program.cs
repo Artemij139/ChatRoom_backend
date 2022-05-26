@@ -22,14 +22,15 @@ builder.Services.AddDbContext<ApplicationDbContext>(config =>
     })
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
-
-builder.Services.AddIdentityServer(
-    options =>
+builder.Services.ConfigureApplicationCookie(config =>
     {
-        options.UserInteraction.LoginUrl = "/Auth/Login";
-    })
+        config.LoginPath = "/Auth/Login";
+        config.LogoutPath = "/Auth/Logout";
+        config.Cookie.Name = "IS.Cookies";
+    });
+builder.Services.AddIdentityServer()
     .AddAspNetIdentity<AppUser>()
-    .AddInMemoryClients(Configuration.GetClients() )
+    .AddInMemoryClients(Configuration.GetClients())
     .AddInMemoryApiResources(Configuration.GetApiResources())
     .AddInMemoryIdentityResources(Configuration.GetIdentityResources())
     .AddInMemoryApiScopes(Configuration.GetApiScopes())

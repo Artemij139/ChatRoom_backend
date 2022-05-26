@@ -17,13 +17,15 @@ builder.Services.AddAuthentication(options =>
         {
             options.TokenValidationParameters = new TokenValidationParameters
             {
-                ValidateAudience = false
+                ValidateAudience = false,
+                ClockSkew = TimeSpan.FromSeconds(5)
             };
 
             options.Authority = "https://localhost:10001";
             
             options.Events = new JwtBearerEvents
-            {
+            {   
+                
                 OnMessageReceived = context =>
                 {
                     var accessToken = context.Request.Query["access_token"];
