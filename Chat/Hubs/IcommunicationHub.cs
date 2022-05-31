@@ -4,7 +4,7 @@ namespace Chat.Hubs
 {
     public interface IcommunicationHub
     {   
-        Task SendMessageAsync(string UserName, string Message);
+        Task SendMessageAsync(string userName, string message);
         Task UpdateUsersAsync(IEnumerable<User> users);
         
     }

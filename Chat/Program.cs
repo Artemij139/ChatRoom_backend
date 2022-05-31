@@ -56,7 +56,7 @@ builder.Services.AddCors(options =>
 var app = builder.Build();
 
 
-app.MapControllers();
+
 
 app.UseCors();
 
@@ -67,6 +67,7 @@ app.UseAuthorization();
 
 
 app.MapHub<chatHub>("/chatHub");
+app.MapControllers();
 
 app.Run();
 

@@ -27,7 +27,7 @@ namespace Chat.Hubs
         }
         public override async Task OnDisconnectedAsync(Exception? exception)
         {
-            _manager.DisconnectUser(Context.ConnectionId);
+            var isUserRemoved = _manager.DisconnectUser(Context.ConnectionId);
             await UpdateUsersAsync();
             await base.OnDisconnectedAsync(exception);
         }

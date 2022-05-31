@@ -21,12 +21,13 @@
 
         }
 
-        public void DisconnectUser( string connectionId)
+        public bool DisconnectUser(string connectionId)
         {
             var userExist = GetConnectedUserById(connectionId);
+
             if(userExist == null)
             {
-                return;
+                return false;
             }
 
             userExist.RemoveConnection(connectionId);
@@ -34,8 +35,10 @@
             if (userExist._chatConnections.Count == 0)
             {
                 Users.Remove(userExist);
+                return true;
             }
 
+            return false;
         }
 
         private User? GetConnectedUserById(string connectionId)
