@@ -40,7 +40,7 @@ namespace Chat.Hubs
         }
 
 
-        
+        [Authorize(Policy = "HasName")]
         public async Task SendMessageAsync(string userName, string message)
         {
             var x = Context.User;

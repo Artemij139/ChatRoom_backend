@@ -1,5 +1,6 @@
 using AuthorizeIdentityServer.Configuration;
 using AuthorizeIdentityServer.Data;
+using AuthorizeIdentityServer.Infrustructure;
 using AuthorizeIdentityServer.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -34,6 +35,7 @@ builder.Services.AddIdentityServer()
     .AddInMemoryApiResources(Configuration.GetApiResources())
     .AddInMemoryIdentityResources(Configuration.GetIdentityResources())
     .AddInMemoryApiScopes(Configuration.GetApiScopes())
+    .AddProfileService<ProfileService>()
     .AddDeveloperSigningCredential();
 
 var app = builder.Build();

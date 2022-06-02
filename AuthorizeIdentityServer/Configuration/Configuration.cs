@@ -27,10 +27,10 @@ namespace AuthorizeIdentityServer.Configuration
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile
                     },
-                    AccessTokenLifetime=5,
+                    AccessTokenLifetime=1800,
                    
                     AllowOfflineAccess= true,
-                    
+
                 }
             };
         }
