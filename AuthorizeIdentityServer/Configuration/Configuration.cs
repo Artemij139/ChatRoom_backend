@@ -30,7 +30,7 @@ namespace AuthorizeIdentityServer.Configuration
                     AccessTokenLifetime=1800,
                    
                     AllowOfflineAccess= true,
-
+                    
                 }
             };
         }

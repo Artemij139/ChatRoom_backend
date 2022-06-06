@@ -29,7 +29,7 @@ namespace AuthorizeIdentityServer.Infrustructure
 
             var claims = new List<Claim>
             {
-                new Claim (ClaimTypes.Name, user.UserName),
+                new Claim ("name", user.UserName),
                
             };
             context.IssuedClaims.AddRange(claims);
