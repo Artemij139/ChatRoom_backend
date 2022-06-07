@@ -3,20 +3,21 @@
     public class Manager
     {
         internal readonly List<User> Users = new();
-        public void ConnectUser(string UserName, string connectionId)
+        public bool ConnectUser(string UserName, string connectionId)
         {
             var userAlreadyExist = GetConnectedUserByName(UserName);
 
             if (userAlreadyExist != null)
             {
                 userAlreadyExist.AddConnection(connectionId);
-               
+                return false;
             }
             else
             {
                 var user = new User(UserName);
                 user.AddConnection(connectionId);
                 Users.Add(user);
+                return true;
             }
 
         }

@@ -17,13 +17,18 @@ namespace Chat.Hubs
 
         public Manager _manager { get; }
 
-        public override Task OnConnectedAsync()
+        public override async Task OnConnectedAsync()
         {
             var userName = Context.User?.Identity?.Name ?? "Anonymous";
+
             var connectionId = Context.ConnectionId;
-            
-             _manager.ConnectUser(userName, connectionId);
-            return base.OnConnectedAsync();
+
+            var firstTime = _manager.ConnectUser(userName, connectionId);
+
+            await UpdateUsersAsync();
+
+            await base.OnConnectedAsync();
+
         }
         public override async Task OnDisconnectedAsync(Exception? exception)
         {
@@ -34,7 +39,7 @@ namespace Chat.Hubs
 
         public Task UpdateUsersAsync()
         {
-            var users = _manager.Users.ToList();
+            var users = _manager.Users.Select(x=>x.Name).ToList();
             Clients.All.UpdateUsersAsync(users);
             return Task.CompletedTask;
         }
@@ -43,7 +48,7 @@ namespace Chat.Hubs
         [Authorize(Policy = "HasName")]
         public async Task SendMessageAsync(string userName, string message)
         {
-            var x = Context.User;
+            
             //change All to Others
             await Clients.All.SendMessageAsync(userName, message);
         }
