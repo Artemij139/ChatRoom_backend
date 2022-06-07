@@ -1,4 +1,5 @@
-﻿using Chat.Models;
+﻿using Chat.Database;
+using Chat.Models;
 
 namespace Chat.Hubs
 {
@@ -6,6 +7,7 @@ namespace Chat.Hubs
     {   
         Task SendMessageAsync(string userName, string message);
         Task UpdateUsersAsync(IEnumerable<String> usersNames);
+        Task UpdateMessagesAsync(IEnumerable<Message> messages);
         
     }
 }

@@ -1,11 +1,19 @@
 
+using Chat.Database;
 using Chat.Hubs;
 using Chat.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<ChatDbContex>(config =>
+{
+    config.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
+});
+
 
 builder.Services.AddControllers();
 builder.Services.AddSignalR();

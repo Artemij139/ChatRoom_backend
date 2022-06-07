@@ -1,4 +1,5 @@
-﻿using Chat.Models;
+﻿using Chat.Database;
+using Chat.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 
@@ -10,12 +11,16 @@ namespace Chat.Hubs
     public class chatHub : Hub<IcommunicationHub>
     {   
        
-        public chatHub(Manager manager)
+        public chatHub(Manager manager, ChatDbContex chatDb)
         {
             _manager = manager;
+            _chatDb = chatDb;
+
         }
 
         public Manager _manager { get; }
+        public ChatDbContex _chatDb { get; }
+
 
         public override async Task OnConnectedAsync()
         {
@@ -23,11 +28,15 @@ namespace Chat.Hubs
 
             var connectionId = Context.ConnectionId;
 
-            var firstTime = _manager.ConnectUser(userName, connectionId);
+            _manager.ConnectUser(userName, connectionId);
 
             await UpdateUsersAsync();
 
+            await UpdateMessagesAsync();
+
             await base.OnConnectedAsync();
+
+
 
         }
         public override async Task OnDisconnectedAsync(Exception? exception)
@@ -44,6 +53,13 @@ namespace Chat.Hubs
             return Task.CompletedTask;
         }
 
+        public Task UpdateMessagesAsync()
+        {
+            var mess = _chatDb.messages.ToList();
+            Clients.All.UpdateMessagesAsync(mess);
+            return Task.CompletedTask;
+        }
+
 
         [Authorize(Policy = "HasName")]
         public async Task SendMessageAsync(string userName, string message)
@@ -51,6 +67,14 @@ namespace Chat.Hubs
             
             //change All to Others
             await Clients.All.SendMessageAsync(userName, message);
+            var x = await _chatDb.messages.AddAsync(
+                new Message
+                {   
+                    Id = Guid.NewGuid(),
+                    userName = userName,
+                    text = message
+                });
+            await _chatDb.SaveChangesAsync();
         }
     }
 }
