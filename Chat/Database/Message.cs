@@ -9,7 +9,10 @@ namespace Chat.Database
 
         [MaxLength(100)]
         public string userName { get; set; }
+
         [MaxLength(1000)]
         public string text { get; set; }
+
+        public DateTime time { get; set; }
     }
 }

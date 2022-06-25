@@ -5,7 +5,7 @@ VisualStudioVersion = 17.1.32414.318
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chat", "Chat\Chat.csproj", "{A8DF3A0F-01B9-4A04-B3DA-5AC61C3A7A1B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthorizeIdentityServer", "AuthorizeIdentityServer\AuthorizeIdentityServer.csproj", "{9FB6F4BD-E3C4-4862-8A43-1D3ED62EDFF1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthorizeIdentityServer", "AuthorizeIdentityServer\AuthorizeIdentityServer.csproj", "{9FB6F4BD-E3C4-4862-8A43-1D3ED62EDFF1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

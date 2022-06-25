@@ -20,9 +20,6 @@ namespace AuthorizeIdentityServer.Infrustructure
         public Task GetProfileDataAsync(ProfileDataRequestContext context)
         {
 
-
-            //if (context.Caller == IdentityServerConstants.ProfileDataCallers.ClaimsProviderAccessToken)
-
             var id = context.Subject.GetSubjectId();
 
             var user = _userManager.FindByIdAsync(id).GetAwaiter().GetResult();

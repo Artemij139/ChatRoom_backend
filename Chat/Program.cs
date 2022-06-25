@@ -15,7 +15,7 @@ builder.Services.AddDbContext<ChatDbContex>(config =>
 });
 
 
-builder.Services.AddControllers();
+
 builder.Services.AddSignalR();
 builder.Services.AddSingleton<Manager>();
 builder.Services.AddAuthentication(options =>
@@ -68,19 +68,13 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-
-
-
 app.UseCors();
 
 app.UseAuthentication();
 
 app.UseAuthorization();
 
-
-
 app.MapHub<chatHub>("/chatHub");
-app.MapControllers();
 
 app.Run();
 

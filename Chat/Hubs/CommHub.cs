@@ -40,7 +40,7 @@ namespace Chat.Hubs
         //When client client, he get all history messages
         public Task UpdateMessagesAsync()
         {
-            var mess = _chatDb.messages.ToList();
+            var mess = _chatDb.messages.ToList().OrderBy(x=>x.time);
             Clients.Caller.UpdateMessagesAsync(mess);
             return Task.CompletedTask;
         }
@@ -71,7 +71,8 @@ namespace Chat.Hubs
                 {   
                     Id = Guid.NewGuid(),
                     userName = userName,
-                    text = message
+                    text = message,
+                    time = DateTime.Now     
                 });
             await _chatDb.SaveChangesAsync();
         }
