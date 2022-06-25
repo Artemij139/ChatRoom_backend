@@ -1,6 +1,6 @@
 # ChatRoom_backend
 This is a real-time chat application. It consists of two projects: authorization service (based on <b>identity server 4</b>) and web-api (based on <b>signalR</b>).
-IS 4 uses Authorization code flow under OpenID Connect. Access Token Lifetime is half-hour. Refresh Tookken is used to update the access token.
+IS 4 uses Authorization code flow under OpenID Connect. Access token Lifetime is half-hour. Refresh token is used to update the access token.
 Chat API  uses Entity framework to Database connection. In database store users and their messages.
 For Database use sql docker conteiner (https://hub.docker.com/_/microsoft-mssql-server).
 
